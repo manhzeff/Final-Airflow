@@ -18,28 +18,31 @@
 * Tại giao diện Airflow UI, tìm đến DAG có tên `final_project_local_dag`.
 * Nhấn vào nút "Play" (Trigger DAG) để bắt đầu chạy pipeline.
 
-## **4. Cấu Trúc Thư Mục**
 
+## 📁 Cấu trúc thư mục
+
+```
 final-airflow/
-├── config/                          # <-- THƯ MỤC CONFIG ĐÃ THÊM
-│   ├── log_data/
-│   └── song_data/
+├── config/                          # Thư mục chứa dữ liệu đầu vào
+│   ├── log_data/                    # Dữ liệu log dạng JSON
+│   └── song_data/                   # Dữ liệu bài hát dạng JSON
 ├── dags/
-│   └── dag_test.py   # File định nghĩa DAG chính
+│   └── dag_test.py                  # File định nghĩa DAG chính
 ├── plugins/
-│   ├── init.py
+│   ├── __init__.py
 │   ├── helpers/
-│   │   ├── init.py
+│   │   ├── __init__.py
 │   │   └── sql_queries.py          # Module chứa các câu lệnh SQL
-│   └── operators/
-│       ├── init.py
-│       ├── stage_postgres.py       # Operator cho việc staging
-│       ├── load_fact.py            # Operator cho bảng fact
-│       ├── load_dimension.py       # Operator cho các bảng dimension
+│   └── operators/                  
+│       ├── __init__.py
+│       ├── stage_postgres.py       # Operator để load dữ liệu staging vào PostgreSQL
+│       ├── load_fact.py            # Operator load dữ liệu vào bảng fact (songplays)
+│       ├── load_dimension.py       # Operator load dữ liệu vào các bảng dimension
 │       └── data_quality.py         # Operator kiểm tra chất lượng dữ liệu
 ├── screenshots/
-│   ├── 1.png
+│   ├── 1.png                        # Ảnh minh họa UI hoặc kết quả DAG
 │   └── 2.png
-├── create_tables.sql               # File SQL để tạo bảng
-├── docker-compose.yaml             # file để chạy docker
-└── README.md                       # File báo cáo
+├── create_tables.sql               # Script SQL để tạo các bảng trong schema
+├── docker-compose.yaml             # File cấu hình Docker Compose để chạy Airflow và PostgreSQL
+└── README.md                       # Tài liệu mô tả dự án
+```
